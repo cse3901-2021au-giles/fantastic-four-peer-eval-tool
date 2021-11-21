@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
   has_many :memberships
   has_many :teams, through: :memberships
+  has_many :peer_evaluations
+  has_many :reviews
 
   # Returns the hash digest of the given string.
   def User.digest(string)
