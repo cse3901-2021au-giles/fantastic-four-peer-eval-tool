@@ -1,0 +1,2 @@
+class ScoreCategory < ApplicationRecord
+end
