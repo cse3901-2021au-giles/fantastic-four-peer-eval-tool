@@ -7,6 +7,7 @@ class User < ApplicationRecord
                     uniqueness: true
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
+  validates :admin_level, presence: true, inclusion: { in: ['Teacher', 'TA', 'Student', 'System']}
 
   has_many :memberships
   has_many :teams, through: :memberships
