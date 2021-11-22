@@ -57,6 +57,22 @@ p {
   line-height: 1.7em;
 }
 
+table#contact {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact table, th, td{
+  border: 1px solid black;
+}
+
+table#contact td {
+  padding: 5px;
+}
+
+table#contact th {
+  padding: 5px;
+}
 
 /* header */
 
