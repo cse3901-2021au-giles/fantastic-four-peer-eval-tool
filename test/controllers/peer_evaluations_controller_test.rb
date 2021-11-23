@@ -15,14 +15,6 @@ class PeerEvaluationsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create peer_evaluation" do
-    assert_difference('PeerEvaluation.count') do
-      post peer_evaluations_url, params: { peer_evaluation: {  } }
-    end
-
-    assert_redirected_to peer_evaluation_url(PeerEvaluation.last)
-  end
-
   test "should show peer_evaluation" do
     get peer_evaluation_url(@peer_evaluation)
     assert_response :success
@@ -31,18 +23,5 @@ class PeerEvaluationsControllerTest < ActionDispatch::IntegrationTest
   test "should get edit" do
     get edit_peer_evaluation_url(@peer_evaluation)
     assert_response :success
-  end
-
-  test "should update peer_evaluation" do
-    patch peer_evaluation_url(@peer_evaluation), params: { peer_evaluation: {  } }
-    assert_redirected_to peer_evaluation_url(@peer_evaluation)
-  end
-
-  test "should destroy peer_evaluation" do
-    assert_difference('PeerEvaluation.count', -1) do
-      delete peer_evaluation_url(@peer_evaluation)
-    end
-
-    assert_redirected_to peer_evaluations_url
   end
 end

@@ -10,6 +10,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    if @user.admin_level == nil
+      @user.admin_level = "Student"
+    end
     if @user.save
       reset_session
       log_in @user
