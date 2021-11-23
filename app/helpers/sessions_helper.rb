@@ -17,6 +17,16 @@ module SessionsHelper
       !current_user.nil?
     end
 
+    # Returns true if the user is a system user, false otherwise.
+    def system_user?
+      current_user.admin_level == "System"
+    end
+
+    # Returns true if the user is a teaching user (teacher, TA), false otherwise.
+    def teaching_user?
+      system_user? || current_user.admin_level == "Teacher" || current_user.admin_level == "TA"
+    end
+
     # Logs out the current user.
     def log_out
         session.delete(:user_id)
