@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :is_authorized, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /projects
   # GET /projects.json
@@ -70,5 +71,9 @@ class ProjectsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def project_params
       params.require(:project).permit(:name)
+    end
+
+    def is_authorized
+      redirect_to(root_url) unless system_user? || teaching_user?
     end
 end

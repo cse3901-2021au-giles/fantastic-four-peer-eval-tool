@@ -1,5 +1,6 @@
 class ScoreCategoriesController < ApplicationController
   before_action :set_score_category, only: [:show, :edit, :update, :destroy]
+  before_action :is_authorized, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /score_categories
   # GET /score_categories.json
@@ -70,5 +71,9 @@ class ScoreCategoriesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def score_category_params
       params.require(:score_category).permit(:name)
+    end
+
+    def is_authorized
+      redirect_to(root_url) unless system_user? || teaching_user?
     end
 end

@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
+  before_action :is_authorized, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /teams
   # GET /teams.json
@@ -70,5 +71,9 @@ class TeamsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def team_params
       params.require(:team).permit(:name)
+    end
+
+    def is_authorized
+      redirect_to(root_url) unless system_user? || teaching_user?
     end
 end
