@@ -1,0 +1,21 @@
+<h1>Student Roster</h1>
+
+<table>
+    <thead>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+    </thead>
+    <tbody>
+        <% @users.each do |user| %>
+            <td>
+            <%= user.id %>
+            </td>
+            <td>
+            <%= user.name %>
+            </td>
+            <td>
+            <%= user.email %>
+        <% end %>
+    </tbody>
+</table>

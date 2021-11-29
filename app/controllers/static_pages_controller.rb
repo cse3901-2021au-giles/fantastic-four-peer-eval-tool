@@ -2,7 +2,9 @@ class StaticPagesController < ApplicationController
   def home
   end
 
-  def help
+  def roster
+    @users = User.where(admin_level: 'Student')
+    @projects = Project.all
   end
 
   def about
