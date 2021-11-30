@@ -11,6 +11,17 @@
     </div>
   <% end %>
 
+  <select class="form-select" aria-label="Default select example">
+    <option selected>Reviewer</option>
+    <%= form.collection_select :team_id, Team.order(:name), :id, :name %>
+    <%# TO-DO fix drop down %>
+  </select>
+
+  <select class="field" aria-label="Default select example">
+    <%= form.collection_select :team_id, Team.order(:id), :id, :name %>
+    <%# TO-DO fix drop down %>
+  </select>
+
   <div class="actions">
     <%= form.submit %>
   </div>

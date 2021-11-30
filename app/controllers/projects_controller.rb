@@ -27,6 +27,11 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
 
+    if @project.team_id == nil
+      @project.team_id = 1
+      # need a better way to set this in the view; corresponds with drop-down
+    end
+
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }

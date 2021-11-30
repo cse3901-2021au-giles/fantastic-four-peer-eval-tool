@@ -18,6 +18,13 @@
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
+      <%= f.label :admin_level, "Admin Level" %>
+      <select class="form-select" aria-label="Default select example">
+        <option selected>Admin Level</option>
+        <option value="Teacher">Teacher</option>
+        <option value="Student">Student</option>
+      </select>
+
       <%= f.submit "Create my account", class: "btn btn-primary" %>
     <% end %>
   </div>

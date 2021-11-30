@@ -12,7 +12,11 @@ User.create(name: 'Teacher', email: 'teacher@3901.com', password: 'password', ad
 User.create(name: 'TA', email: 'ta@3901.com', password: 'password', admin_level: 'TA')
 User.create(name: 'System', email: 'system@3901.com', password: 'password', admin_level: 'System')
 
-#Example Teams
-team = Team.new(name: "Team1");
+# Example Teams
+team = Team.new(:id => 1, name:"Team1");
 team.users << student
 team.save
+
+# Create Project
+peer_eval_proj = Project.new(name: "Peer Evals");
+Project.new(name: "P2");
