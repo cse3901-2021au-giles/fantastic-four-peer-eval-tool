@@ -16,12 +16,12 @@
     <%= form.text_field :name %>
   </div>
 
-  <select class="form-select" aria-label="Default select example">
-    <%= form.collection_select :user_id, User.order(:id), :id, :name %>
-  </select>
-  <select class="form-select" aria-label="Default select example">
-      <%= form.collection_select :project_id, Project.order(:id), :id, :name %>
-  </select>
+  <p>Add user</p>
+  <%= form.collection_select :user_id, User.order(:name), :id, :name, prompt:true %>
+  <p>Remove user</p>
+  <%= form.collection_select :user_id, User.order(:name), :id, :name, prompt:true %>
+  <%# TO-DO change remove user to only show current members of the team %>
+  <%# TO-DO make is so that only students can be added to teams %>
   <div>Note: Edit the team multiple times to add/remove members</div>
 
   <div class="actions">

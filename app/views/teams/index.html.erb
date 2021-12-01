@@ -16,8 +16,14 @@
       <tr>
         <td><%= team.name %></td>
 
-        <%# <%= form.collection_select :team_id, Team.order(:name), :id, :name %> %>
-
+        <%# <%= form.collection_select :team_id, Team.order(:name), :id, :name %>
+        <td>
+          <ul>
+            <% team.users.each do |member| %>
+              <li><%= link_to member.name, "users/" + member.id.to_s %></li>
+            <% end %>
+          </ul>
+        </td>
         <td><%= link_to 'Show', team %></td>
         <td><%= link_to 'Edit', edit_team_path(team) %></td>
         <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>

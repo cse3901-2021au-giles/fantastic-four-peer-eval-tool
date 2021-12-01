@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :memberships
   has_many :teams, through: :memberships
   has_many :peer_evaluations
-  has_many :reviews
+  has_many :reviews, through: :peer_evaluations
 
   # Returns the hash digest of the given string.
   def User.digest(string)

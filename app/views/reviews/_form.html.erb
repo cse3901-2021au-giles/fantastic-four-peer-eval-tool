@@ -16,6 +16,11 @@
     <%= form.text_area :comment %>
   </div>
 
+  <p>Project</p>
+  <%= form.collection_select :project_id, Project.order(:name), :id, :name, prompt:true %>
+  <p>Reviewee</p>
+  <%= form.collection_select :reviewee_id, Reviewee.order(:name), :id, :name, prompt:true %>
+
   <div class="actions">
     <%= form.submit %>
   </div>
