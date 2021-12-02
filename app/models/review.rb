@@ -1,6 +1,5 @@
 class Review < ApplicationRecord
-    belongs_to :peer_evaluation
     belongs_to :user
-    has_many :scores
+    belongs_to :project
     validates :comment, length: { maximum: 250 }
 end

@@ -43,12 +43,12 @@ For more information, see the
 
 
 Requirements for successful demo
+Student must create user account(s)
 Teacher must create user account as admin level Teacher
-Teacher must create project
-Student must create user account
+Teacher must create project: ~/projects/ -> create new
 Teacher adds students to teams
 Teacher adds teams to projects
-Students can then edit peer evaluations
+Students can then edit reviews
 $$$
 
  or view already prepared db:

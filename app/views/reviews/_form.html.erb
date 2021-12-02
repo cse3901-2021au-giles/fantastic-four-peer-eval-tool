@@ -19,7 +19,7 @@
   <p>Project</p>
   <%= form.collection_select :project_id, Project.order(:name), :id, :name, prompt:true %>
   <p>Reviewee</p>
-  <%= form.collection_select :reviewee_id, Reviewee.order(:name), :id, :name, prompt:true %>
+  <%= form.collection_select :reviewee_id, User.order(:name), :id, :name, prompt:true %>
 
   <div class="actions">
     <%= form.submit %>

@@ -6,9 +6,9 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Team ID</th>
+      <th>Project ID but we might want to change to Team Name</th>
       <%# change to team name?? TO-DO %>
-      <th>Peer Evaluations</th>
+      <th>Reviews</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,8 +17,15 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= project.name %></td>
-        <td><%= project.team_id %></td>
-        <td><%= link_to "Peer Evaluations", 'peer_evaluations' %></td>
+        <td><%= project.id %></td>
+        <%# add team name %>
+        <td>
+          <ul>
+            <% project.reviews.each do |review| %>
+              <li><%= link_to review.name, "users/" + review.id.to_s %></li>
+            <% end %>
+          </ul>
+        </td>
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
