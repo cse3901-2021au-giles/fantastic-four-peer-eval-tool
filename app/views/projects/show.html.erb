@@ -4,6 +4,14 @@
   <strong>Name:</strong>
   <%= @project.name %>
 </p>
+<p>
+  <strong>Teams:</strong>
+  <br>
+  <ul>
+    <% @project.team_ids.each do |i| %>
+      <li><%= Team.find(i).name %></li>
+    <% end %>
+  </ul>
+</p>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Back', projects_path, :class => 'btn btn-secondary' %>
