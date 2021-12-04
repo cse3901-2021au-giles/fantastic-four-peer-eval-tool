@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_21_232868) do
+ActiveRecord::Schema.define(version: 2021_12_04_213505) do
 
   create_table "memberships", force: :cascade do |t|
     t.integer "user_id"
@@ -22,6 +22,10 @@ ActiveRecord::Schema.define(version: 2021_11_21_232868) do
   create_table "peer_evaluations", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "completed"
+    t.integer "team_id"
+    t.integer "user_id"
+    t.integer "reviewee"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -34,24 +38,17 @@ ActiveRecord::Schema.define(version: 2021_11_21_232868) do
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "score_categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "scores", force: :cascade do |t|
-    t.integer "value"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.integer "score"
+    t.integer "peer_evaluation_id"
+    t.integer "user_id"
+    t.integer "team_id"
   end
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "project_id"
   end
 
   create_table "users", force: :cascade do |t|

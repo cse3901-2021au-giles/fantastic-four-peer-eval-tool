@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   has_many :memberships
   has_many :teams, through: :memberships
+  has_many :projects
   has_many :peer_evaluations
   has_many :reviews
 
