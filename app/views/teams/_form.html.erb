@@ -14,9 +14,11 @@
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
+
+    <%= form.hidden_field :project_id, :value => params[:project_id]  %> <!-- This hidden field assigns the team to a project -->
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit text, :class => 'btn btn-primary'  %>
   </div>
 <% end %>

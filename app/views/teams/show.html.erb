@@ -4,7 +4,10 @@
   <strong>Name:</strong>
   <%= @team.name %>
   <br>
-  <strong>Members:</strong>
+  <strong>Members: </strong>
+  <% if @team.users.count <= 0 %>
+  None
+  <% end %>
   <br>
   <ul>
   <% @team.users.each do |member| %>
@@ -13,5 +16,6 @@
   </ul>
 </p>
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+<%= link_to 'Add User', new_membership_path(:team_id => @team.id), :class => 'btn btn-primary' %>
+<%= link_to 'Edit', edit_team_path(@team), :class => 'btn btn-warning' %>
+<%= link_to 'Back', teams_path, :class => 'btn btn-danger' %>

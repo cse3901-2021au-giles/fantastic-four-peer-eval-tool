@@ -1,6 +1,5 @@
 <h1>Editing Team</h1>
 
-<%= render 'form', team: @team %>
+<%= render 'form', team: @team, text: "Edit Team" %>
 
-<%= link_to 'Show', @team %> |
-<%= link_to 'Back', teams_path %>
+<%= link_to 'Cancel', teams_path, :class => 'btn btn-danger' %>
