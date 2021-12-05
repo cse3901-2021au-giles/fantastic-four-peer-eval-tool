@@ -3,7 +3,9 @@
 <% @members = Team.find(params[:team_id]).users.collect %>
 <% @members.each do |reviewer| %>
     <% @members.each do |reviewee| %>
-        <% PeerEvaluation.create(:team_id => params[:team_id], :user_id => reviewer.id, :reviewee => reviewee, :completed => false) %>
+        <% if reviewer != reviewee %>
+            <% PeerEvaluation.create(:team_id => params[:team_id], :user_id => reviewer.id, :reviewee => reviewee.id, :completed => false) %>
+        <% end %>
     <% end %>
 <% end %>
 

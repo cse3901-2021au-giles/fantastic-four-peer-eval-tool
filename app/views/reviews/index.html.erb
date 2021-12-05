@@ -5,18 +5,25 @@
 <table>
   <thead>
     <tr>
+      <th>Project</th>
+      <th>Team</th>
+      <th>Reviewer</th>
+      <th>Reviewee</th>
+      <th>Score</th>
       <th>Comment</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @reviews.each do |review| %>
+    <% @reviews.where(team_id: params[:team_id]).collect.each do |review| %>
       <tr>
+        <% @t = Team.find(review.team_id) %>
+        <td><%= Project.find(@t.project_id).name %></td>
+        <td><%= @t.name %></td>
+        <td><%= User.find(review.user_id).name %></td>
+        <td><%= User.find(PeerEvaluation.find(review.peer_evaluation_id).reviewee).name %></td>
+        <td><%= review.score %></td>
         <td><%= review.comment %></td>
-        <td><%= link_to 'Show', review %></td>
-        <td><%= link_to 'Edit', edit_review_path(review) %></td>
-        <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +31,4 @@
 
 <br>
 
-<%= link_to 'New Review', new_review_path %>
+<%= link_to 'Back', teams_path, :class => 'btn btn-danger' %>

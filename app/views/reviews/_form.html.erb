@@ -11,12 +11,35 @@
     </div>
   <% end %>
 
+  <% @eval = PeerEvaluation.find(params[:peer_evaluation_id]) %>
+
   <div class="field">
-    <%= form.label :comment %>
+    <%= form.hidden_field :peer_evaluation_id, :value => @eval.id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :team %>
+    <%= form.text_field :team, :value => Team.find(@eval.team_id).name, :readonly => true %>
+    <%= form.hidden_field :team_id, :value => @eval.team_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reviewee %>
+    <%= form.text_field :reviewee, :value => User.find(@eval.reviewee).name, :readonly => true %>
+    <%= form.hidden_field :user_id, :value => @eval.user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Score" %>
+    <%= form.select :score, 0..10 %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Comments" %>
     <%= form.text_area :comment %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Complete", :class => 'btn btn-success' %>
   </div>
 <% end %>

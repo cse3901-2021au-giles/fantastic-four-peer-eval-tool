@@ -2,26 +2,95 @@
 
 <h1>Peer Evaluations</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Project</th>
-      <th>Team</th>
-      <th>Team Member</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @peer_evaluations.where(user_id: current_user.id, completed: false).collect.each do |peer_evaluation| %>
+<h3>TODO</h3>
+<% if @peer_evaluations.where(user_id: current_user.id, completed: false).count > 0 %>
+  <table>
+    <thead>
       <tr>
-        <% @t = Team.find(peer_evaluation.team_id) %>
-        <td><%= Project.find(@t.project_id).name %></td>
-        <td><%= @t.name %></td>
-        <td><%= User.find(peer_evaluation.reviewee).name %></td>
-        <td><%= link_to 'Start', new_review_path(:peer_evaluation_id => peer_evaluation.id), :class => 'btn btn-primary' %></td>
-        <td><%= link_to 'Destroy', peer_evaluation, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+        <th>Project</th>
+        <th>Team</th>
+        <th>Team Member</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @peer_evaluations.where(user_id: current_user.id, completed: false).collect.each do |peer_evaluation| %>
+        <tr>
+          <% @t = Team.find(peer_evaluation.team_id) %>
+          <td><%= Project.find(@t.project_id).name %></td>
+          <td><%= @t.name %></td>
+          <td><%= User.find(peer_evaluation.reviewee).name %></td>
+          <td><%= link_to 'Start', new_review_path(:peer_evaluation_id => peer_evaluation.id), :class => 'btn btn-primary' %></td>
+          <td><%= link_to 'Destroy', peer_evaluation, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No peer evaluations to do.
+<% end %>
+
+<h3>Completed</h3>
+<% if @peer_evaluations.where(user_id: current_user.id, completed: true).count > 0 %>
+  <table>
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Team</th>
+        <th>Team Member</th>
+        <th>Score</th>
+        <th>Comment</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @peer_evaluations.where(user_id: current_user.id, completed: true).collect.each do |peer_evaluation| %>
+        <tr>
+          <% @t = Team.find(peer_evaluation.team_id) %>
+          <td><%= Project.find(@t.project_id).name %></td>
+          <td><%= @t.name %></td>
+          <td><%= User.find(peer_evaluation.reviewee).name %></td>
+          <% @r = Review.where(peer_evaluation_id: peer_evaluation.id).first %>
+          <td><%= @r.score %></td>
+          <td><%= @r.comment %></td>
+          <td><%= link_to 'Destroy', peer_evaluation, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No completed peer evaluations.
+<% end %>
+
+<h3>Your Reviews</h3>
+<% if @peer_evaluations.where(reviewee: current_user.id, completed: true).count > 0 %>
+  <table>
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Team</th>
+        <th>Score</th>
+        <th>Comment</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @peer_evaluations.where(reviewee: current_user.id, completed: true).collect.each do |peer_evaluation| %>
+        <tr>
+          <% @t = Team.find(peer_evaluation.team_id) %>
+          <td><%= Project.find(@t.project_id).name %></td>
+          <td><%= @t.name %></td>
+          <% @r = Review.where(peer_evaluation_id: peer_evaluation.id).first %>
+          <td><%= @r.score %></td>
+          <td><%= @r.comment %></td>
+          <td><%= link_to 'Destroy', peer_evaluation, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No completed peer evaluations.
+<% end %>

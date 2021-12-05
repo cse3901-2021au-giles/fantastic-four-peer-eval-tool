@@ -1,9 +1,26 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <% @t = Team.find(@review.team_id) %>
+  <strong>Project:</strong>
+  <%= Project.find(@t.project_id).name %>
+  <br>
+  <strong>Team:</strong>
+  <%= @t.name %>
+  <br>
+  <strong>Reviewer:</strong>
+  <%= User.find(@review.user_id).name %>
+  <br>
+  <strong>Reviewee:</strong>
+  <%= User.find(PeerEvaluation.find(@review.peer_evaluation_id).reviewee).name %>
+  <br>
+  <strong>Score:</strong>
+  <%= @review.score %>
+  <br>
   <strong>Comment:</strong>
   <%= @review.comment %>
 </p>
 
-<%= link_to 'Edit', edit_review_path(@review) %> |
-<%= link_to 'Back', reviews_path %>
+<% PeerEvaluation.find(@review.peer_evaluation_id).update_attribute :completed, true %> <!-- Prevents review from being re-submitted -->
+
+<%= link_to 'Back', peer_evaluations_path, :class => 'btn btn-danger' %>
