@@ -24,10 +24,10 @@
         <% if system_user? %>
         <td><%= user.admin_level %></td>
         <% end %>
-        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Show', user, :class => 'btn btn-secondary' %></td>
         <% if system_user? %>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_user_path(user), :class => 'btn btn-warning' %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
         <% end %>
       </tr>
     <% end %>
@@ -36,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'New User', new_user_path, :class => 'btn btn-primary' %>
