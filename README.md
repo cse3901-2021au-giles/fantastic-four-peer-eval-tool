@@ -40,3 +40,16 @@ $ rails server
 
 For more information, see the
 [*Ruby on Rails Tutorial* book](https://www.railstutorial.org/book).
+
+
+Requirements for successful demo
+Student must create user account(s)
+Teacher must create user account as admin level Teacher
+Teacher must create project: ~/projects/ -> create new
+Teacher adds students to teams
+Teacher adds teams to projects
+Students can then edit reviews
+$$$
+
+ or view already prepared db:
+$ rake db:seed

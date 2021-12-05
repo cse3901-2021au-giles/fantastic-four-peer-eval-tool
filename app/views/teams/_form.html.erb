@@ -16,9 +16,19 @@
     <%= form.text_field :name %>
   </div>
 
+<<<<<<< HEAD
   <div class="field">
     <%= form.hidden_field :project_id, :value => params[:project_id]  %> <!-- This hidden field assigns the team to a project -->
   </div>
+=======
+  <p>Add user</p>
+  <%= form.collection_select :user, User.order(:name), :user, :name, prompt:true %>
+  <p>Remove user</p>
+  <%= form.collection_select :user, User.order(:name), :user, :name, prompt:true %>
+  <%# TO-DO change remove user to only show current members of the team %>
+  <%# TO-DO make is so that only students can be added to teams %>
+  <div>Note: Edit the team multiple times to add/remove members</div>
+>>>>>>> master
 
   <div class="actions">
     <%= form.submit text, :class => 'btn btn-primary'  %>

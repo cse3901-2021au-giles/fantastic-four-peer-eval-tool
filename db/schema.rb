@@ -32,10 +32,13 @@ ActiveRecord::Schema.define(version: 2021_12_04_213505) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "team_id"
+    t.index ["team_id"], name: "index_projects_on_team_id"
   end
 
   create_table "reviews", force: :cascade do |t|
     t.text "comment"
+    t.integer "score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "score"

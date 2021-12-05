@@ -39,6 +39,11 @@
     <%= form.text_area :comment %>
   </div>
 
+  <p>Project</p>
+  <%= form.collection_select :project_id, Project.order(:name), :id, :name, prompt:true %>
+  <p>Reviewee</p>
+  <%= form.collection_select :reviewee_id, User.order(:name), :id, :name, prompt:true %>
+
   <div class="actions">
     <%= form.submit "Complete", :class => 'btn btn-success' %>
   </div>

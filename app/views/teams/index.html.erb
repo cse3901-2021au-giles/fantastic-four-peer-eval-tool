@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
+<<<<<<< HEAD
       <th>Project</th>
       <th>Member Count</th>
       <% if teaching_user? || system_user? %>
@@ -13,6 +14,10 @@
       <% else %>
       <th colspan="1"></th>
       <% end %>
+=======
+      <th>Members</th>
+      <th colspan="3"></th>
+>>>>>>> master
     </tr>
   </thead>
 
@@ -20,6 +25,7 @@
     <% @teams.each do |team| %>
       <tr>
         <td><%= team.name %></td>
+<<<<<<< HEAD
         <td><%= Project.find(team.project_id).name %></td>
         <td><%= team.users.count %></td>
         <td><%= link_to 'Show', team, :class => 'btn btn-secondary' %></td>
@@ -34,6 +40,20 @@
           <td><%= link_to 'Edit', edit_team_path(team), :class => 'btn btn-warning' %></td>
           <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
         <% end %>
+=======
+
+        <td>
+          <ul>
+            <% team.users.each do |member| %>
+              <li><%= link_to member.name, "users/" + member.id.to_s %></li>
+            <% end %>
+          </ul>
+        </td>
+        
+        <td><%= link_to 'Show', team %></td>
+        <td><%= link_to 'Edit', edit_team_path(team) %></td>
+        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+>>>>>>> master
       </tr>
     <% end %>
   </tbody>
