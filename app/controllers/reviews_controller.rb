@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :is_authorized, only: [:index, :edit, :update, :destroy]
 
   # GET /reviews
   # GET /reviews.json
@@ -70,5 +71,9 @@ class ReviewsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def review_params
       params.require(:review).permit(:peer_evaluation_id, :user_id, :team_id, :score, :comment)
+    end
+
+    def is_authorized
+      redirect_to(root_url) unless system_user? || teaching_user?
     end
 end
