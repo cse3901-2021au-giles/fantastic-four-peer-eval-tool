@@ -1,4 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_peer_evaluation_path(@peer_evaluation) %> |
+<p>
+    <strong>Team: </strong>
+    <%= Team.find(@peer_evaluation.team_id).name %>
+    <br>
+    <strong>User: </strong>
+    <%= User.find(@peer_evaluation.user_id).name %>
+</p>
+
 <%= link_to 'Back', peer_evaluations_path %>

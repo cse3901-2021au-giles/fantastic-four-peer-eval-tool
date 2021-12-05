@@ -1,5 +1,10 @@
-<h1>New Peer Evaluation</h1>
+<h1>Peer Evaluation Created</h1>
 
-<%= render 'form', peer_evaluation: @peer_evaluation %>
+<% @members = Team.find(params[:team_id]).users.collect %>
+<% @members.each do |reviewer| %>
+    <% @members.each do |reviewee| %>
+        <% PeerEvaluation.create(:team_id => params[:team_id], :user_id => reviewer.id, :reviewee => reviewee, :completed => false) %>
+    <% end %>
+<% end %>
 
-<%= link_to 'Back', peer_evaluations_path %>
+<%= link_to 'Back', teams_path, :class => 'btn btn-danger' %>
