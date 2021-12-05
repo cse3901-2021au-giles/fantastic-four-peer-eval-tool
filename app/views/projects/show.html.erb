@@ -9,7 +9,8 @@
   <br>
   <ul>
     <% @project.team_ids.each do |i| %>
-      <li><%= Team.find(i).name %></li>
+      <% t = Team.find(i) %>
+      <li><%= link_to t.name, teams_path + "/" + t.id.to_s %></li>
     <% end %>
   </ul>
 </p>

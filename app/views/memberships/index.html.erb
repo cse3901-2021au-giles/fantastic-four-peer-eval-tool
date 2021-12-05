@@ -1,0 +1,26 @@
+<h1>Memberships</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Member</th>
+      <th>Team</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @memberships.each do |membership| %>
+      <% if params[:team_id] == membership.team_id || teaching_user? || system_user? %>
+        <tr>
+          <td><%= User.find(membership.user_id).name %></td>
+          <td><%= Team.find(membership.team_id).name %></td>
+          <td> <%= link_to 'Destroy', membership, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "btn btn-danger" %><br></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Back', teams_path, :class => "btn btn-danger" %>

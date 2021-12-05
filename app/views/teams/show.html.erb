@@ -11,7 +11,8 @@
   <br>
   <ul>
   <% @team.users.each do |member| %>
-    <li><%= link_to member.name, "users/" + member.id.to_s %></li>
+    <li><%= link_to member.name, users_path + "/" + member.id.to_s %>
+    <%= link_to 'Remove Member', memberships_path + "/" + Membership.where(user_id: member.id, team_id: @team.id).first.id.to_s, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></li>
   <% end %>
   </ul>
 </p>

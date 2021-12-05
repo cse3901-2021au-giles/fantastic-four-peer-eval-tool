@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :score_categories
-  resources :scores
   resources :projects
   resources :reviews
   resources :peer_evaluations

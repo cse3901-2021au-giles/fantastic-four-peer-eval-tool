@@ -1,0 +1,25 @@
+<%= form_with(model: membership) do |form| %>
+  <% if membership.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(peer_evaluation.errors.count, "error") %> prohibited this peer_evaluation from being saved:</h2>
+
+      <ul>
+        <% peer_evaluation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.select :user_id, User.where.not(id: Team.find(params[:team_id]).user_ids).collect {|u| [ u.name, u.id ] } %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :team_id, :value => params[:team_id] %> <!-- This hidden field assigns the membership to a team -->
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Add Member", :class => 'btn btn-primary' %>
+  </div>
+<% end %>

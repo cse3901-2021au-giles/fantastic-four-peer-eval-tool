@@ -1,0 +1,5 @@
+<p>
+  <strong><%= User.find(@membership.user_id).name %></strong> successfully added to <strong><%= Team.find(@membership.team_id).name %></strong>
+</p>
+
+<%= link_to 'Back', teams_path, :class => "btn btn-danger" %>
