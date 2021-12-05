@@ -10,11 +10,7 @@
         <th>Project</th>
         <th>Team</th>
         <th>Team Member</th>
-        <% if teaching_user? || system_user? %>
-        <th colspan="2"></th>
-        <% else %>
         <th colspan="1"></th>
-        <% end %>
       </tr>
     </thead>
 
@@ -25,10 +21,12 @@
           <td><%= Project.find(@t.project_id).name %></td>
           <td><%= @t.name %></td>
           <td><%= User.find(peer_evaluation.reviewee).name %></td>
-          <td><%= link_to 'Start', new_review_path(:peer_evaluation_id => peer_evaluation.id), :class => 'btn btn-primary' %></td>
+          <td>
+          <%= link_to 'Start', new_review_path(:peer_evaluation_id => peer_evaluation.id), :class => 'btn btn-primary' %>
           <% if teaching_user? || system_user? %>
-          <td><%= link_to 'Destroy', peer_evaluation, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+          <%= link_to 'Destroy', peer_evaluation, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
           <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

@@ -8,11 +8,7 @@
       <th>Name</th>
       <th>Project</th>
       <th>Member Count</th>
-      <% if teaching_user? || system_user? %>
-      <th colspan="4"></th>
-      <% else %>
       <th colspan="1"></th>
-      <% end %>
     </tr>
   </thead>
 
@@ -22,18 +18,19 @@
         <td><%= team.name %></td>
         <td><%= Project.find(team.project_id).name %></td>
         <td><%= team.users.count %></td>
-        <td><%= link_to 'Show', team, :class => 'btn btn-secondary' %></td>
-        <% if teaching_user? || system_user? %>
-          <% if PeerEvaluation.where(team_id: team.id).count > 0 %>
-            <% if evals_done? team %>
-              <td><%= link_to 'View Scores', reviews_path(:team_id => team.id), :class => 'btn btn-primary' %></td>
+        <td><%= link_to 'Show', team, :class => 'btn btn-secondary' %>
+          <% if teaching_user? || system_user? %>
+            <% if PeerEvaluation.where(team_id: team.id).count > 0 %>
+              <% if evals_done? team %>
+                <%= link_to 'View Scores', reviews_path(:team_id => team.id), :class => 'btn btn-primary' %>
+              <% end %>
+            <% elsif team.users.count > 1 %> <!-- This prevents the case where a peer eval can never be completed. (No reviews in a peer eval) -->
+              <%= link_to 'Start Evaluations', new_peer_evaluation_path(:team_id => team.id), data: { confirm: 'Are you sure?' }, :class => 'btn btn-primary' %>
             <% end %>
-          <% elsif team.users.count > 1 %> <!-- This prevents the case where a peer eval can never be completed. (No reviews in a peer eval) -->
-            <td><%= link_to 'Start Evaluations', new_peer_evaluation_path(:team_id => team.id), data: { confirm: 'Are you sure?' }, :class => 'btn btn-primary' %></td>
+            <%= link_to 'Edit', edit_team_path(team), :class => 'btn btn-warning' %>
+            <%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
           <% end %>
-          <td><%= link_to 'Edit', edit_team_path(team), :class => 'btn btn-warning' %></td>
-          <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
-        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

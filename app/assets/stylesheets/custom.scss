@@ -67,19 +67,16 @@ table#contact {
   border: 1px solid black;
 }
 
-table td {
-  padding: 5px;
+table td, table th {
+  padding: 10px;
+  font-size: 1.5em;
 }
 
-table th {
-  padding: 5px;
+table a.btn {
+  font-size: 1em;
 }
 
-table#contact td {
-  padding: 5px;
-}
-
-table#contact th {
+table#contact td, table#contact th {
   padding: 5px;
 }
 

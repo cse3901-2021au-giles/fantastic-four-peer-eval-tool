@@ -1,11 +1,13 @@
 <h1>Memberships</h1>
 
-<table class="table">
+<table>
   <thead>
     <tr>
       <th>Member</th>
       <th>Team</th>
+      <% if teaching_user? || system_user? %>
       <th colspan="1"></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -15,7 +17,9 @@
         <tr>
           <td><%= User.find(membership.user_id).name %></td>
           <td><%= Team.find(membership.team_id).name %></td>
+          <% if teaching_user? || system_user? %>
           <td> <%= link_to 'Destroy', membership, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "btn btn-danger" %><br></td>
+          <% end %>
         </tr>
       <% end %>
     <% end %>

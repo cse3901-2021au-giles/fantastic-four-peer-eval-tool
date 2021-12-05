@@ -9,10 +9,8 @@
       <th>Email</th>
       <% if system_user? %>
       <th>Admin Level</th>
-      <th colspan="3"></th>
-      <% else %>
-      <th colspan="1"></th>
       <% end %>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
@@ -24,11 +22,13 @@
         <% if system_user? %>
         <td><%= user.admin_level %></td>
         <% end %>
-        <td><%= link_to 'Show', user, :class => 'btn btn-secondary' %></td>
-        <% if system_user? %>
-        <td><%= link_to 'Edit', edit_user_path(user), :class => 'btn btn-warning' %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
-        <% end %>
+        <td>
+          <%= link_to 'Show', user, :class => 'btn btn-secondary' %>
+          <% if system_user? %>
+          <%= link_to 'Edit', edit_user_path(user), :class => 'btn btn-warning' %>
+          <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
