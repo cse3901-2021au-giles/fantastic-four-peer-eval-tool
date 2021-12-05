@@ -4,7 +4,7 @@
 
 <h3>TODO</h3>
 <% if @peer_evaluations.where(user_id: current_user.id, completed: false).count > 0 %>
-  <table>
+  <table class ="eval">
     <thead>
       <tr>
         <th>Project</th>
@@ -37,7 +37,7 @@
 
 <h3>Completed</h3>
 <% if @peer_evaluations.where(user_id: current_user.id, completed: true).count > 0 %>
-  <table>
+  <table class ="eval">
     <thead>
       <tr>
         <th>Project</th>
@@ -74,7 +74,7 @@
 
 <h3>Your Reviews</h3>
 <% if @peer_evaluations.where(reviewee: current_user.id, completed: true).count > 0 %>
-  <table>
+  <table class ="eval">
     <thead>
       <tr>
         <th>Project</th>
