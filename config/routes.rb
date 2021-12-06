@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :teams
   resources :memberships
   root   'static_pages#home'
+  get    '/my_teams',    to: 'static_pages#my_teams'
   get    '/roster',    to: 'static_pages#roster'
   get    '/about',   to: 'static_pages#about'
   get    '/contact', to: 'static_pages#contact'
