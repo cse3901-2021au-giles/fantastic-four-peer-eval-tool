@@ -38,5 +38,8 @@ If the test suite passes, you'll be ready to run the app in a local server:
 $ rails server
 ```
 
-For more information, see the
-[*Ruby on Rails Tutorial* book](https://www.railstutorial.org/book).
+# Setup user for db management (postgresql)
+
+```
+$ createuser -s -r ff #ff is the name of the admin of pg
+```
