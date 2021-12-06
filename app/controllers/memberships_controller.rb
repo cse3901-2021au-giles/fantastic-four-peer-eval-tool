@@ -1,5 +1,6 @@
 class MembershipsController < ApplicationController
     before_action :set_membership, only: [:show, :edit, :update, :destroy]
+    before_action :is_logged_in
     before_action :is_authorized, only: [:new, :create, :edit, :update, :destroy]
   
     # GET /memberships
@@ -73,6 +74,12 @@ class MembershipsController < ApplicationController
         params.require(:membership).permit(:user_id, :team_id)
       end
 
+      # Redirects to home if not logged in
+      def is_logged_in
+        redirect_to(root_url) unless logged_in?
+      end
+
+      # Redirect to home if unathorized
       def is_authorized
         redirect_to(root_url) unless system_user? || teaching_user?
       end

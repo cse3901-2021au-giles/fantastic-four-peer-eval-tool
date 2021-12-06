@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
   before_action :is_authorized, only: [:new, :create, :edit, :update, :destroy]
+  before_action :is_logged_in
 
   # GET /teams
   # GET /teams.json
@@ -73,6 +74,12 @@ class TeamsController < ApplicationController
       params.require(:team).permit(:name, :project_id)
     end
 
+    # Redirects to home if not logged in
+    def is_logged_in
+      redirect_to(root_url) unless logged_in?
+    end
+
+    # Redirect to home if unathorized
     def is_authorized
       redirect_to(root_url) unless system_user? || teaching_user?
     end

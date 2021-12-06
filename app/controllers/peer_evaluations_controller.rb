@@ -1,5 +1,7 @@
 class PeerEvaluationsController < ApplicationController
   before_action :set_peer_evaluation, only: [:show, :edit, :update, :destroy]
+  before_action :is_logged_in
+  before_action :is_authorized, only: [:destroy]
 
   # GET /peer_evaluations
   # GET /peer_evaluations.json
@@ -70,5 +72,15 @@ class PeerEvaluationsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def peer_evaluation_params
       params.fetch(:peer_evaluation, {})
+    end
+
+    # Redirects to home if not logged in
+    def is_logged_in
+      redirect_to(root_url) unless logged_in?
+    end
+
+    # Redirect to home if unathorized
+    def is_authorized
+      redirect_to(root_url) unless system_user? || teaching_user?
     end
 end
