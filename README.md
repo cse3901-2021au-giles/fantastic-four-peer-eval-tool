@@ -62,8 +62,29 @@ Our group approached testing in two ways. First, we utilized the rails testing t
     * Test: Sucess
 * Click on `Class`
     * Expected: Dropdown menu with 3 options:
-        * Test 
-    * Actual: Peer Evaluations Page
+        * Students
+        * Projects
+        * Teams 
+    * Actual: Dropdown menu with 3 options:
+        * Students
+        * Projects
+        * Teams 
+    * Test: Sucess
+* Click on `Administration`
+    * Expected: Dropdown menu with 3 options:
+        * Users 
+    * Actual: Dropdown menu with 1 options:
+        * Users
+    * Test: Sucess
+* Click on `Account`
+    * Expected: Dropdown menu with 3 options:
+        * Profile
+        * Settings
+        * Logout 
+    * Actual: Dropdown menu with 3 options:
+        * Profile
+        * Settings
+        * Logout 
     * Test: Sucess
 
 
