@@ -1,6 +1,6 @@
-# Ruby on Rails Tutorial sample application
+# Ruby on Rails Peer Evaluation Tool
 
-This is the sample application for
+This peer evaluation tool is modeled off of
 [*Ruby on Rails Tutorial:
 Learn Web Development with Rails*](https://www.railstutorial.org/)
 (6th Edition)
