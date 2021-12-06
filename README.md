@@ -42,5 +42,21 @@ $ rails server
 
 Our group approached testing in two ways. First, we utilized the rails testing to ensure the project was compilng correctly. Second, we took a front-end approach and ensured all buttons and functionality of the peer evaluation tool were working correctly. The following section, will give a walk through of this process.
 
+### Navigation Bar
+
+* Click on `OSU PEER EVALUATION`
+    * Expected: Home Page
+    * Actual: Home Page
+    * Test: Success
+* Click on `Home` 
+    * Expected: Home Page
+    * Actual: Home Page
+    * Test: Success
+* Click on `My Evals`
+    * Expected: Peer Evaluations Page
+    * Actual: Peer Evaluations Page
+    * Test: Sucess
+
+
 For more information, see the
 [*Ruby on Rails Tutorial* book](https://www.railstutorial.org/book).
