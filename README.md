@@ -1,4 +1,4 @@
-# Ruby on Rails Peer Evaluation Tool
+# The Fantastic Four Ruby on Rails Peer Evaluation Tool
 
 This peer evaluation tool is modeled off of
 [*Ruby on Rails Tutorial:
@@ -54,6 +54,15 @@ Our group approached testing in two ways. First, we utilized the rails testing t
     * Test: Success
 * Click on `My Evals`
     * Expected: Peer Evaluations Page
+    * Actual: Peer Evaluations Page
+    * Test: Sucess
+* Click on `My Teams`
+    * Expected: My Teams Page
+    * Actual: My Teams Page
+    * Test: Sucess
+* Click on `Class`
+    * Expected: Dropdown menu with 3 options:
+        * Test 
     * Actual: Peer Evaluations Page
     * Test: Sucess
 
