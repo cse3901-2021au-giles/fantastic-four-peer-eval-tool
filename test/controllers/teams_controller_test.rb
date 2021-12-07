@@ -2,6 +2,8 @@ require "test_helper"
 
 class TeamsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @user = users(:michael)
+    post login_path, params: { session: { email:    @user.email, password: 'password' } }
     @team = teams(:one)
   end
 

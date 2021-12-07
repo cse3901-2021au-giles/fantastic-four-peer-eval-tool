@@ -2,6 +2,8 @@ require "test_helper"
 
 class ReviewsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @user = users(:michael)
+    post login_path, params: { session: { email:    @user.email, password: 'password' } }
     @review = reviews(:one)
   end
 

@@ -2,6 +2,8 @@ require "test_helper"
 
 class PeerEvaluationsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @user = users(:michael)
+    post login_path, params: { session: { email:    @user.email, password: 'password' } }
     @peer_evaluation = peer_evaluations(:one)
   end
 
