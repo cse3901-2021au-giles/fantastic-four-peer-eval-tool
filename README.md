@@ -1,4 +1,4 @@
-# The Fantastic Four Ruby on Rails Peer Evaluation Tool
+# The Fantastic Four Ruby on Rails Peer Evaluation Tool 
 ### Presentation slides: https://docs.google.com/presentation/d/1F4h16ghYXiEByEcU4T6D1vn2caOcpUMC5zxarMMxZqU/edit?usp=sharing
 ### Deployed to https://fantastic-four-peer-eval-tool.herokuapp.com
 
@@ -10,7 +10,7 @@ by [Michael Hartl](https://www.michaelhartl.com/).
 
 ## Purpose
 
-The Peer-Evaluation-Tool is for use in a project-based class for students assess work performed by various team members. Instructors assign students as members of teams that are assigned to projects. Instructors initiate student evaluations and can view the progress of student evaluations.
+The Peer-Evaluation-Tool is for use in a project-based class for students assess work performed by various team members. Instructors assign students as members of teams that are assigned to projects. Instructors initiate student evaluations and can view the progress of student evaluations. Students can view anonymous peer evaluations conducted by team members.
 
 ## Capabilities & Features
  * Teachers can send out peer evaluations for students to complete.
