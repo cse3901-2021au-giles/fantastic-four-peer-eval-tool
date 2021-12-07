@@ -14,7 +14,7 @@ The Peer-Evaluation-Tool is for use in a project-based class for students assess
 ## Capabilities & Features
  * Teachers can send out peer evaluations for students to complete.
  * Peer evaluations can be checked from a specific teacher perspective.
- * Studens can view their own peer evaluations left by other students but reviewee name is anonymous.
+ * Students can view their own peer evaluations left by other students but reviewee name is anonymous.
  * Instructor has ability to create users, projects, teams, and initiate peer reviews.
  * Extensive login capabilities:
     * Different levels of users: system, teacher, student.
@@ -23,6 +23,11 @@ The Peer-Evaluation-Tool is for use in a project-based class for students assess
     * Views distinct to user logged in based on user.
     * Security feature: user information (ID, passwords, etc) is not passed in plain text and/or not visible (hidden HTML) within webpage source code as needed.
     * Gravitar image upload available.
+ * Extensive Rails associations utilized to ensure Rail's principle of convention over configuration.
+ * Style - Ruby: Utilized Rubocop to ensure correct Ruby language use.
+ * Style - HTML/CSS: Utilized W3C as HTML styling reference.
+ * Ensured proper use of accessibility features to maximize availability of application to users.
+ * Development build includes a console.
 
 
 ## Building the app
@@ -56,13 +61,14 @@ $ rails server
 
 From browser: Navigate to: localhost:3000 (or otherwise location given by server)
 
-## Development Notes
- * Extensive Rails associations utilized to ensure Rail's principle of convention over configuration.
- * Utilized Rubocop to ensure correct Ruby language use.
- * Ensured proper use of accessibility features to maximize availability of application to users.
- * Utilized W3C as HTML styling reference.
-
 ## How to use site
+
+### Helpful sample accounts that can be seeded
+login: teacher@3901.com, password: password
+login: system@3901.com, password: password
+login: student@3901.com, password: password
+login: ta@3901.com, password: password
+
 ### Student
 * Create user account
 
