@@ -16,7 +16,7 @@
     <% @teams.each do |team| %>
       <tr>
         <td><%= team.name %></td>
-        <td><%= Project.find(team.project_id).name %></td>
+        <td><%= Project.find_by_id(team.project_id)&.name %></td>
         <td><%= team.users.count %></td>
         <td><%= link_to 'Show', team, :class => 'btn btn-secondary' %>
           <% if teaching_user? || system_user? %>
