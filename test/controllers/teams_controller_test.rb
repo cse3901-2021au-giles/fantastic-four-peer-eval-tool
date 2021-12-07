@@ -5,6 +5,7 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
     @user = users(:michael)
     post login_path, params: { session: { email:    @user.email, password: 'password' } }
     @team = teams(:one)
+    @team.project_id = projects(:one).id
   end
 
   test "should get index" do
