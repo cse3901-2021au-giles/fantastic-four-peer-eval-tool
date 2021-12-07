@@ -4,7 +4,7 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: %i[show edit update destroy]
   before_action :authorized?, only: %i[index edit update destroy]
-  before_action :logged_in?
+  before_action :logged_in_user
 
   # GET /reviews
   # GET /reviews.json
@@ -76,9 +76,13 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(:peer_evaluation_id, :user_id, :team_id, :score, :comment)
   end
 
-  # Redirects to home if not logged in
-  def logged_in?
-    redirect_to(root_url) unless logged_in?
+  # Confirms a logged-in user.
+  def logged_in_user
+    return if logged_in? # Guard clause
+
+    store_location
+    flash[:danger] = 'Please log in.'
+    redirect_to login_url
   end
 
   # Redirect to home if unathorized

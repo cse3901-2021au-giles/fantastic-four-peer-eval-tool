@@ -2,7 +2,7 @@
 
 # This controls actions that can be performed on static pages
 class StaticPagesController < ApplicationController
-  before_action :logged_in?, only: %i[roster my_teams]
+  before_action :logged_in_user, only: %i[roster my_teams]
 
   # GET /home
   def home; end
@@ -24,8 +24,12 @@ class StaticPagesController < ApplicationController
 
   private
 
-  # Redirects to home if not logged in
-  def logged_in?
-    redirect_to(root_url) unless logged_in?
+  # Confirms a logged-in user.
+  def logged_in_user
+    return if logged_in? # Guard clause
+
+    store_location
+    flash[:danger] = 'Please log in.'
+    redirect_to login_url
   end
 end

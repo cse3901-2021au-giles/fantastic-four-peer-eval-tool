@@ -3,7 +3,7 @@
 # This controls actions that can be performed on peer evaluations
 class PeerEvaluationsController < ApplicationController
   before_action :set_peer_evaluation, only: %i[show edit update destroy]
-  before_action :logged_in?
+  before_action :logged_in_user
   before_action :authorized?, only: [:destroy]
 
   # GET /peer_evaluations
@@ -76,9 +76,13 @@ class PeerEvaluationsController < ApplicationController
     params.fetch(:peer_evaluation, {})
   end
 
-  # Redirects to home if not logged in
-  def logged_in?
-    redirect_to(root_url) unless logged_in?
+  # Confirms a logged-in user.
+  def logged_in_user
+    return if logged_in? # Guard clause
+
+    store_location
+    flash[:danger] = 'Please log in.'
+    redirect_to login_url
   end
 
   # Redirect to home if unathorized
