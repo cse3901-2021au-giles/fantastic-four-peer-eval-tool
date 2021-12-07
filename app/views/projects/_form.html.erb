@@ -1,4 +1,7 @@
+<!-- Form partial for projects -->
+
 <%= form_with(model: project) do |form| %>
+  <!-- Display any errors -->
   <% if project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -11,6 +14,7 @@
     </div>
   <% end %>
 
+  <!-- A project needs a name -->
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
