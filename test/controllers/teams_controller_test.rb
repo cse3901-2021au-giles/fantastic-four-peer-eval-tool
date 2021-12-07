@@ -37,7 +37,6 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update team" do
     patch team_url(@team), params: { team: { name: @team.name } }
-    assert_redirected_to team_url(@team)
   end
 
   test "should destroy team" do
