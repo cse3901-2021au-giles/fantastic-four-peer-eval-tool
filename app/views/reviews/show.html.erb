@@ -1,5 +1,8 @@
+<!-- Display a single peer evaluation -->
+
 <p id="notice"><%= notice %></p>
 
+<!-- Displays entire peer_evaluation/review pairing (team, project, reviewer, reviewee, score, comment) -->
 <p>
   <% @t = Team.find_by_id(@review.team_id) %>
   <strong>Project:</strong>
