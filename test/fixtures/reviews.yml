@@ -1,7 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  peer_evaluation_id: 1
+  user_id: 1
+  team_id: 1
+  score: 1
   comment: MyText
 
 two:
+  peer_evaluation_id: 1
+  user_id: 1
+  team_id: 1
+  score: 2
   comment: MyText
