@@ -1,12 +1,15 @@
+<!-- Page for showing a team -->
+
 <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
   <%= @team.name %>
   <br>
+  <!-- Links all members of the team -->
   <strong>Members: </strong>
   <% if @team.users.count <= 0 %>
-  None
+  None <!-- Display none if there are no members -->
   <% end %>
   <br>
   <ul>

@@ -1,3 +1,5 @@
+<!-- Signup form for users -->
+
 <% provide(:title, 'Sign up') %>
 <h1>Sign up</h1>
 
@@ -6,12 +8,14 @@
     <%= form_with(model: @user, local: true) do |f| %>
       <%= render 'shared/error_messages' %>
 
+      <!-- User needs a name, email, and password -->
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
 
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
 
+      <!-- password fields must match -->
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
 

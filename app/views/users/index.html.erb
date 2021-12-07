@@ -1,3 +1,5 @@
+<!-- Page that displays all users -->
+
 <p id="notice"><%= notice %></p>
 
 <h1>Users</h1>
@@ -7,6 +9,7 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
+      <!-- Only system users can see admin_levels -->
       <% if system_user? %>
       <th>Admin Level</th>
       <% end %>
@@ -19,11 +22,13 @@
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
+        <!-- Only system users can see admin levels -->
         <% if system_user? %>
         <td><%= user.admin_level %></td>
         <% end %>
         <td>
           <%= link_to 'Show', user, :class => 'btn btn-secondary' %>
+          <!-- Only system users can edit/destroy users -->
           <% if system_user? %>
           <%= link_to 'Edit', edit_user_path(user), :class => 'btn btn-warning' %>
           <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>

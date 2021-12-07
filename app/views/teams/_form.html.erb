@@ -1,4 +1,6 @@
+<!-- Form partial for teams -->
 <%= form_with(model: team) do |form| %>
+  <!-- Display errors -->
   <% if team.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
@@ -11,11 +13,13 @@
     </div>
   <% end %>
 
+  <!-- Teams need a name and an associated project -->
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
 
+  <!-- The project is gotten from the parameters -->
   <div class="field">
     <%= form.hidden_field :project_id, :value => params[:project_id]  %> <!-- This hidden field assigns the team to a project -->
   </div>

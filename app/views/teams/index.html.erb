@@ -1,3 +1,5 @@
+<!-- Page to display all teams -->
+
 <p id="notice"><%= notice %></p>
 
 <h1>Teams</h1>
@@ -19,6 +21,7 @@
         <td><%= Project.find_by_id(team.project_id)&.name %></td>
         <td><%= team.users.count %></td>
         <td><%= link_to 'Show', team, :class => 'btn btn-secondary' %>
+          <!-- Only teaching/system users can view scores, start evaluations, and edit/destroy teams -->
           <% if teaching_user? || system_user? %>
             <% if PeerEvaluation.where(team_id: team.id).count > 0 %>
               <% if evals_done? team %>
