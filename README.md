@@ -60,6 +60,7 @@ From browser: Navigate to: localhost:3000 (or otherwise location given by server
  * Extensive Rails associations utilized to ensure Rail's principle of convention over configuration.
  * Utilized Rubocop to ensure correct Ruby language use.
  * Ensured proper use of accessibility features to maximize availability of application to users.
+ * Utilized W3C as HTML styling reference.
 
 ## How to use site
 ### Student
