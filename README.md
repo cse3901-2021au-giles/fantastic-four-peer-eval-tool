@@ -9,7 +9,6 @@ Learn Web Development with Rails*](https://www.railstutorial.org/)
 by [Michael Hartl](https://www.michaelhartl.com/).
 
 ## Purpose
-
 The Peer-Evaluation-Tool is for use in a project-based class for students assess work performed by various team members. Instructors assign students as members of teams that are assigned to projects. Instructors initiate student evaluations and can view the progress of student evaluations. Students can view anonymous peer evaluations conducted by team members.
 
 ## Capabilities & Features
@@ -27,7 +26,6 @@ The Peer-Evaluation-Tool is for use in a project-based class for students assess
 
 
 ## Building the app
-
 To get started with the app, clone the repo.
 
 Install the needed gems and dependencies
@@ -80,11 +78,9 @@ From browser: Navigate to: localhost:3000 (or otherwise location given by server
 It is then possible for teachers to review status of the peer evalutions and for students to view anonymous reviews left by peers.
 
 ## Testing
-
 Our group approached testing in two ways. First, we utilized the rails testing to ensure the project was compilng correctly. Second, we took a front-end approach and ensured all buttons and functionality of the peer evaluation tool were working correctly. The following section, will give a walk through of this process.
 
 ### Navigation Bar
-
 * Click on `OSU PEER EVALUATION`
     * Expected: Home Page
     * Actual: Home Page
