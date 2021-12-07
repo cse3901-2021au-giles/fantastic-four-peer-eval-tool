@@ -2,20 +2,24 @@
 
 <table class="roster">
     <thead>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
     </thead>
     <tbody>
         <% @users.each do |user| %>
-            <td>
-            <%= user.id %>
-            </td>
-            <td>
-            <%= user.name %>
-            </td>
-            <td>
-            <%= user.email %>
+            <tr>
+                <td>
+                <%= user.id %>
+                </td>
+                <td>
+                <%= user.name %>
+                </td>
+                <td>
+                <%= user.email %>
+            </tr>
         <% end %>
     </tbody>
 </table>

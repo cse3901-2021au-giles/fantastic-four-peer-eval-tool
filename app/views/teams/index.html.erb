@@ -22,7 +22,9 @@
           <% if teaching_user? || system_user? %>
             <% if PeerEvaluation.where(team_id: team.id).count > 0 %>
               <% if evals_done? team %>
-                <%= link_to 'View Scores', reviews_path(:team_id => team.id), :class => 'btn btn-primary' %>
+                <%= link_to 'Completed Scores', reviews_path(:team_id => team.id), :class => 'btn btn-primary' %>
+              <% elsif %>
+                <%= link_to 'In-progress Scores', reviews_path(:team_id => team.id), :class => 'btn btn-primary' %>
               <% end %>
             <% elsif team.users.count > 1 %> <!-- This prevents the case where a peer eval can never be completed. (No reviews in a peer eval) -->
               <%= link_to 'Start Evaluations', new_peer_evaluation_path(:team_id => team.id), data: { confirm: 'Are you sure?' }, :class => 'btn btn-primary' %>
