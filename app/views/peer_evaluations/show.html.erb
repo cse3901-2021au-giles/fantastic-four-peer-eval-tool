@@ -1,11 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+    <% @team = Team.find_by_id(@peer_evaluation.team_id) %>
+    <% @user = User.find_by_id(@peer_evaluation.user_id) %>
     <strong>Team: </strong>
-    <%= Team.find(@peer_evaluation.team_id).name %>
+    <%= @team.name if @team != nil %>
     <br>
     <strong>User: </strong>
-    <%= User.find(@peer_evaluation.user_id).name %>
+    <%= @user.name if @user != nil %>
 </p>
 
 <%= link_to 'Back', peer_evaluations_path %>
