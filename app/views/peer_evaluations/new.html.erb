@@ -1,8 +1,8 @@
 <h1>Peer Evaluation Created</h1>
 
-<% @members = Team.find(params[:team_id]).users.collect %>
-<% @members.each do |reviewer| %>
-    <% @members.each do |reviewee| %>
+<% @members = Team.find_by_id(params[:team_id])&.users&.collect %>
+<% @members&.each do |reviewer| %>
+    <% @members&.each do |reviewee| %>
         <% if reviewer != reviewee %>
             <% PeerEvaluation.create(:team_id => params[:team_id], :user_id => reviewer.id, :reviewee => reviewee.id, :completed => false) %>
         <% end %>

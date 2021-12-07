@@ -21,9 +21,4 @@ class PeerEvaluationsControllerTest < ActionDispatch::IntegrationTest
     get peer_evaluation_url(@peer_evaluation)
     assert_response :success
   end
-
-  test "should get edit" do
-    get edit_peer_evaluation_url(@peer_evaluation)
-    assert_response :success
-  end
 end
