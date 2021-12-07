@@ -1,26 +1,31 @@
+# frozen_string_literal: true
+
+# This controls actions that can be performed on static pages
 class StaticPagesController < ApplicationController
-  before_action :is_logged_in, only: [:roster, :my_teams]
+  before_action :logged_in?, only: %i[roster my_teams]
 
-  def home
-  end
+  # GET /home
+  def home; end
 
+  # GET /roster
   def roster
     @users = User.where(admin_level: 'Student')
     @projects = Project.all
   end
 
-  def about
-  end
+  # GET /about
+  def about; end
 
-  def my_teams
-  end
+  # GET /my_teams
+  def my_teams; end
 
-  def contact
-  end
+  # GET /contact
+  def contact; end
 
   private
-    # Redirects to home if not logged in
-    def is_logged_in
-      redirect_to(root_url) unless logged_in?
-    end
+
+  # Redirects to home if not logged in
+  def logged_in?
+    redirect_to(root_url) unless logged_in?
+  end
 end

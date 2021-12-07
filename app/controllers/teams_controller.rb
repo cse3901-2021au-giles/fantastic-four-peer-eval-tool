@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
+# This controls actions that can be performed on teams
 class TeamsController < ApplicationController
-  before_action :set_team, only: [:show, :edit, :update, :destroy]
-  before_action :is_authorized, only: [:new, :create, :edit, :update, :destroy]
-  before_action :is_logged_in
+  before_action :set_team, only: %i[show edit update destroy]
+  before_action :authorized?, only: %i[new create edit update destroy]
+  before_action :logged_in?
 
   # GET /teams
   # GET /teams.json
@@ -11,8 +14,7 @@ class TeamsController < ApplicationController
 
   # GET /teams/1
   # GET /teams/1.json
-  def show
-  end
+  def show; end
 
   # GET /teams/new
   def new
@@ -20,8 +22,7 @@ class TeamsController < ApplicationController
   end
 
   # GET /teams/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /teams
   # POST /teams.json
@@ -64,23 +65,24 @@ class TeamsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_team
-      @team = Team.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def team_params
-      params.require(:team).permit(:name, :project_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_team
+    @team = Team.find(params[:id])
+  end
 
-    # Redirects to home if not logged in
-    def is_logged_in
-      redirect_to(root_url) unless logged_in?
-    end
+  # Only allow a list of trusted parameters through.
+  def team_params
+    params.require(:team).permit(:name, :project_id)
+  end
 
-    # Redirect to home if unathorized
-    def is_authorized
-      redirect_to(root_url) unless system_user? || teaching_user?
-    end
+  # Redirects to home if not logged in
+  def logged_in?
+    redirect_to(root_url) unless logged_in?
+  end
+
+  # Redirect to home if unathorized
+  def authorized?
+    redirect_to(root_url) unless system_user? || teaching_user?
+  end
 end

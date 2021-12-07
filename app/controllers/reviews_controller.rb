@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
+# This controls actions that can be performed on reviews
 class ReviewsController < ApplicationController
-  before_action :set_review, only: [:show, :edit, :update, :destroy]
-  before_action :is_authorized, only: [:index, :edit, :update, :destroy]
-  before_action :is_logged_in
+  before_action :set_review, only: %i[show edit update destroy]
+  before_action :authorized?, only: %i[index edit update destroy]
+  before_action :logged_in?
 
   # GET /reviews
   # GET /reviews.json
@@ -11,8 +14,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1
   # GET /reviews/1.json
-  def show
-  end
+  def show; end
 
   # GET /reviews/new
   def new
@@ -20,8 +22,7 @@ class ReviewsController < ApplicationController
   end
 
   # GET /reviews/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /reviews
   # POST /reviews.json
@@ -64,23 +65,24 @@ class ReviewsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_review
-      @review = Review.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def review_params
-      params.require(:review).permit(:peer_evaluation_id, :user_id, :team_id, :score, :comment)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_review
+    @review = Review.find(params[:id])
+  end
 
-    # Redirects to home if not logged in
-    def is_logged_in
-      redirect_to(root_url) unless logged_in?
-    end
+  # Only allow a list of trusted parameters through.
+  def review_params
+    params.require(:review).permit(:peer_evaluation_id, :user_id, :team_id, :score, :comment)
+  end
 
-    # Redirect to home if unathorized
-    def is_authorized
-      redirect_to(root_url) unless system_user? || teaching_user?
-    end
+  # Redirects to home if not logged in
+  def logged_in?
+    redirect_to(root_url) unless logged_in?
+  end
+
+  # Redirect to home if unathorized
+  def authorized?
+    redirect_to(root_url) unless system_user? || teaching_user?
+  end
 end

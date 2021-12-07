@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -12,7 +14,7 @@ User.create(name: 'Teacher', email: 'teacher@3901.com', password: 'password', ad
 User.create(name: 'TA', email: 'ta@3901.com', password: 'password', admin_level: 'TA')
 User.create(name: 'System', email: 'system@3901.com', password: 'password', admin_level: 'System')
 
-#Example Teams
-team = Team.new(name: "Team1");
+# Example Teams
+team = Team.new(name: 'Team1')
 team.users << student
 team.save
