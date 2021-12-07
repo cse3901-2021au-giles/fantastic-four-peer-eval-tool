@@ -127,3 +127,7 @@ Our group approached testing in two ways. First, we utilized the rails testing t
         * Settings
         * Logout 
     * Test: Sucess
+
+
+For more information, see the
+[*Ruby on Rails Tutorial* book](https://www.railstutorial.org/book).

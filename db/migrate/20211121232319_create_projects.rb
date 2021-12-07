@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Create projects with a name and a timestamp
 class CreateProjects < ActiveRecord::Migration[6.1]
   def change
     create_table :projects do |t|

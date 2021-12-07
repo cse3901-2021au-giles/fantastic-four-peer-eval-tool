@@ -1,4 +1,6 @@
+<!-- Form partial for reviews -->
 <%= form_with(model: review) do |form| %>
+  <!-- Display any errors -->
   <% if review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
@@ -11,22 +13,28 @@
     </div>
   <% end %>
 
-  <% @eval = PeerEvaluation.find(params[:peer_evaluation_id]) %>
+  <!-- Find the peer evaluation, team, and user associated with review -->
+  <% @eval = PeerEvaluation.find_by_id(params[:peer_evaluation_id]) %>
+  <% @team = Team.find_by_id(@eval.team_id) if @eval != nil %>
+  <% @user = User.find_by_id(@eval.reviewee) if @eval != nil %> <!-- reviewee -->
 
+  <!-- Reviews need a score, team_id, reviewee, and comment -->
   <div class="field">
-    <%= form.hidden_field :peer_evaluation_id, :value => @eval.id %>
+    <%= form.hidden_field :peer_evaluation_id, :value => @eval.id if @eval != nil %>
   </div>
 
   <div class="field">
     <%= form.label :team %>
-    <%= form.text_field :team, :value => Team.find(@eval.team_id).name, :readonly => true %>
-    <%= form.hidden_field :team_id, :value => @eval.team_id %>
+    <!-- Displays team name, but hidden is the team_id -->
+    <%= form.text_field :team, :value => @team.name, :readonly => true if @team != nil %>
+    <%= form.hidden_field :team_id, :value => @eval.team_id if @eval != nil %>
   </div>
 
   <div class="field">
     <%= form.label :reviewee %>
-    <%= form.text_field :reviewee, :value => User.find(@eval.reviewee).name, :readonly => true %>
-    <%= form.hidden_field :user_id, :value => @eval.user_id %>
+    <!-- Displays uer name, but hidden is user_id -->
+    <%= form.text_field :reviewee, :value => @user.name, :readonly => true if @user != nil %>
+    <%= form.hidden_field :user_id, :value => @eval.user_id if @eval != nil %>
   </div>
 
   <div class="field">

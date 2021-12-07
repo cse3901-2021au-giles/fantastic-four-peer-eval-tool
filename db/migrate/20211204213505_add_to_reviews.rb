@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Add score to review and associate with a peer_eval, a user, and a team
 class AddToReviews < ActiveRecord::Migration[6.1]
   def change
     add_column :reviews, :score, :integer

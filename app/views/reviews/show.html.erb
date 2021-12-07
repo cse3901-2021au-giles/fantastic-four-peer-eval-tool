@@ -1,18 +1,24 @@
+<!-- Display a single peer evaluation -->
+
 <p id="notice"><%= notice %></p>
 
+<!-- Displays entire peer_evaluation/review pairing (team, project, reviewer, reviewee, score, comment) -->
 <p>
-  <% @t = Team.find(@review.team_id) %>
+  <% @t = Team.find_by_id(@review.team_id) %>
   <strong>Project:</strong>
-  <%= Project.find(@t.project_id).name %>
+  <%= Project.find_by_id(@t.project_id).name if @t != nil %>
   <br>
   <strong>Team:</strong>
-  <%= @t.name %>
+  <%= @t.name if @t != nil %>
   <br>
   <strong>Reviewer:</strong>
-  <%= User.find(@review.user_id).name %>
+  <% @u = User.find_by_id(@review.user_id) %>
+  <%= @u.name if @u != nil %>
   <br>
   <strong>Reviewee:</strong>
-  <%= User.find(PeerEvaluation.find(@review.peer_evaluation_id).reviewee).name %>
+  <% @p = PeerEvaluation.find_by_id(@review.peer_evaluation_id) %>
+  <% @u2 = User.find_by_id(@p.reviewee) if @p != nil %>
+  <%= @u2.name if @u2 != nil %>
   <br>
   <strong>Score:</strong>
   <%= @review.score %>
@@ -21,6 +27,6 @@
   <%= @review.comment %>
 </p>
 
-<% PeerEvaluation.find(@review.peer_evaluation_id).update_attribute :completed, true %> <!-- Prevents review from being re-submitted -->
+<% @p.update_attribute :completed, true if @p != nil %> <!-- Prevents review from being re-submitted -->
 
 <%= link_to 'Back', peer_evaluations_path, :class => 'btn btn-danger' %>

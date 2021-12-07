@@ -1,7 +1,9 @@
+<!-- Page for displaying all peer evaluations associated with the logged in user -->
 <p id="notice"><%= notice %></p>
 
 <h1>Peer Evaluations</h1>
 
+<!-- Shows all peer evaluations where the user is the reviewer and has not completed it -->
 <h3>TODO</h3>
 <% if @peer_evaluations.where(user_id: current_user.id, completed: false).count > 0 %>
   <table class ="eval">
@@ -32,9 +34,10 @@
     </tbody>
   </table>
 <% else %>
-  <p>No peer evaluations to do.
+  <p>No peer evaluations to do. <!-- Don't display table if it will be empty -->
 <% end %>
 
+<!-- Shows all peer evaluations where the user is the reviewer and they have been completed -->
 <h3>Completed</h3>
 <% if @peer_evaluations.where(user_id: current_user.id, completed: true).count > 0 %>
   <table class ="eval">
@@ -69,14 +72,16 @@
     </tbody>
   </table>
 <% else %>
-  <p>No completed peer evaluations.
+  <p>No completed peer evaluations. <!-- Don't display table if it will be empty -->
 <% end %>
 
+<!-- Shows all peer evaluations where the user is the reviewee and they have been completed -->
 <h3>Your Reviews</h3>
 <% if @peer_evaluations.where(reviewee: current_user.id, completed: true).count > 0 %>
   <table class ="eval">
     <thead>
       <tr>
+        <!-- Keep the reviewer anonymous -->
         <th>Project</th>
         <th>Team</th>
         <th>Score</th>
@@ -104,5 +109,5 @@
     </tbody>
   </table>
 <% else %>
-  <p>No completed peer evaluations.
+  <p>No completed peer evaluations. <!-- Don't display table if it will be empty -->
 <% end %>

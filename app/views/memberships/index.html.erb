@@ -1,3 +1,5 @@
+<!-- Page for displaying all memberships -->
+
 <h1>Memberships</h1>
 
 <table>
@@ -13,10 +15,12 @@
 
   <tbody>
     <% @memberships.each do |membership| %>
+    <!-- This page displays memberships for the desired team, or all if logged in as a teaching/system user -->
       <% if params[:team_id] == membership.team_id || teaching_user? || system_user? %>
         <tr>
           <td><%= User.find(membership.user_id).name %></td>
           <td><%= Team.find(membership.team_id).name %></td>
+          <!-- Memberships can only be destroyed as a system or teaching user -->
           <% if teaching_user? || system_user? %>
           <td> <%= link_to 'Destroy', membership, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "btn btn-danger" %><br></td>
           <% end %>

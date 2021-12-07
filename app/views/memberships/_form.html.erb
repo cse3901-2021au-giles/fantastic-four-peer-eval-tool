@@ -1,4 +1,6 @@
+<!-- This is the form partial for a membership -->
 <%= form_with(model: membership) do |form| %>
+  <!-- Display any errors -->
   <% if membership.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(peer_evaluation.errors.count, "error") %> prohibited this peer_evaluation from being saved:</h2>
@@ -11,6 +13,7 @@
     </div>
   <% end %>
 
+  <!-- Membership needs a user id and a team id -->
   <div class="field">
     <%= form.select :user_id, User.where.not(id: Team.find(params[:team_id]).user_ids).collect {|u| [ u.name, u.id ] } %>
   </div>

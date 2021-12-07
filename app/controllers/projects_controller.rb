@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
+# This controls actions that can be performed on projects
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_action :is_logged_in
-  before_action :is_authorized, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_project, only: %i[show edit update destroy]
+  before_action :logged_in_user
+  before_action :authorized?, only: %i[new create edit update destroy]
 
   # GET /projects
   # GET /projects.json
@@ -11,8 +14,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   # GET /projects/1.json
-  def show
-  end
+  def show; end
 
   # GET /projects/new
   def new
@@ -20,8 +22,7 @@ class ProjectsController < ApplicationController
   end
 
   # GET /projects/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /projects
   # POST /projects.json
@@ -64,23 +65,28 @@ class ProjectsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = Project.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def project_params
-      params.require(:project).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_project
+    @project = Project.find(params[:id])
+  end
 
-    # Redirects to home if not logged in
-    def is_logged_in
-      redirect_to(root_url) unless logged_in?
-    end
+  # Only allow a list of trusted parameters through.
+  def project_params
+    params.require(:project).permit(:name)
+  end
 
-    # Redirect to home if unathorized
-    def is_authorized
-      redirect_to(root_url) unless system_user? || teaching_user?
-    end
+  # Confirms a logged-in user.
+  def logged_in_user
+    return if logged_in? # Guard clause
+
+    store_location
+    flash[:danger] = 'Please log in.'
+    redirect_to login_url
+  end
+
+  # Redirect to home if unathorized
+  def authorized?
+    redirect_to(root_url) unless system_user? || teaching_user?
+  end
 end

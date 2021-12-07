@@ -1,3 +1,5 @@
+<!-- Page for editing a user -->
+
 <% provide(:title, "Edit user") %>
 <h1>Update your profile</h1>
 
@@ -6,6 +8,7 @@
     <%= form_with(model: @user, local: true) do |f| %>
       <%= render 'shared/error_messages' %>
 
+      <!-- User needs a name, email, and password -->
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
 
@@ -15,9 +18,10 @@
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.label :password_confirmation, "Confirmation" %> <!-- password and password_confirmation must be equal -->
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
+      <!-- Only a system user can update the access level of a user -->
       <% if system_user? %>
         <%= f.label :admin_level %>
         <%= f.text_field :admin_level, class: 'form-control' %>
@@ -26,6 +30,7 @@
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
 
+    <!-- Link to gravatar asscoiated with the user's email -->
     <div class="gravatar_edit">
       <%= gravatar_for @user %>
       <a href="https://gravatar.com/emails" target="_blank">change</a>

@@ -1,3 +1,4 @@
+<!-- This goes at the top of every page. -->
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <%= link_to "OSU Peer Evaluation", root_path, id: "logo" %>
@@ -16,9 +17,11 @@
       <ul class="nav navbar-nav navbar-right collapse navbar-collapse"
           id="bs-example-navbar-collapse-1">
         <li><%= link_to "Home", root_path %></li>
+        <!-- The following is only available once you have logged in. -->
         <% if logged_in? %>
           <li><%= link_to "My Evals", peer_evaluations_path %></li>
           <li><%= link_to "My Teams", my_teams_path %></li>
+          <!-- The class tab is only available when logged in with admin_level of TA or Teacher -->
           <% if teaching_user? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -31,6 +34,7 @@
             </ul>
           </li>
           <% end %>
+          <!-- The administration tab is only available when logged in with admin_level of System -->
           <% if system_user? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

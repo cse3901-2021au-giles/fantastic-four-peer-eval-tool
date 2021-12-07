@@ -1,22 +1,23 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
-
-  test "should get home" do
+  test 'should get home' do
     get root_path
     assert_response :success
-    assert_select "title", "Ruby on Rails Tutorial Sample App"
+    assert_select 'title', 'OSU Peer Evaluation'
   end
 
-  test "should get about" do
+  test 'should get about' do
     get about_path
     assert_response :success
-    assert_select "title", "About | Ruby on Rails Tutorial Sample App"
+    assert_select 'title', 'About | OSU Peer Evaluation'
   end
 
-test "should get contact" do
+  test 'should get contact' do
     get contact_path
     assert_response :success
-    assert_select "title", "Contact | Ruby on Rails Tutorial Sample App"
+    assert_select 'title', 'Contact | OSU Peer Evaluation'
   end
 end

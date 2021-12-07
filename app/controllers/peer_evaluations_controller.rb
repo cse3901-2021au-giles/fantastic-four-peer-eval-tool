@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
+# This controls actions that can be performed on peer evaluations
 class PeerEvaluationsController < ApplicationController
-  before_action :set_peer_evaluation, only: [:show, :edit, :update, :destroy]
-  before_action :is_logged_in
-  before_action :is_authorized, only: [:destroy]
+  before_action :set_peer_evaluation, only: %i[show edit update destroy]
+  before_action :logged_in_user
+  before_action :authorized?, only: [:destroy]
 
   # GET /peer_evaluations
   # GET /peer_evaluations.json
@@ -11,8 +14,7 @@ class PeerEvaluationsController < ApplicationController
 
   # GET /peer_evaluations/1
   # GET /peer_evaluations/1.json
-  def show
-  end
+  def show; end
 
   # GET /peer_evaluations/new
   def new
@@ -20,8 +22,7 @@ class PeerEvaluationsController < ApplicationController
   end
 
   # GET /peer_evaluations/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /peer_evaluations
   # POST /peer_evaluations.json
@@ -64,23 +65,28 @@ class PeerEvaluationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_peer_evaluation
-      @peer_evaluation = PeerEvaluation.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def peer_evaluation_params
-      params.fetch(:peer_evaluation, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_peer_evaluation
+    @peer_evaluation = PeerEvaluation.find(params[:id])
+  end
 
-    # Redirects to home if not logged in
-    def is_logged_in
-      redirect_to(root_url) unless logged_in?
-    end
+  # Only allow a list of trusted parameters through.
+  def peer_evaluation_params
+    params.fetch(:peer_evaluation, {})
+  end
 
-    # Redirect to home if unathorized
-    def is_authorized
-      redirect_to(root_url) unless system_user? || teaching_user?
-    end
+  # Confirms a logged-in user.
+  def logged_in_user
+    return if logged_in? # Guard clause
+
+    store_location
+    flash[:danger] = 'Please log in.'
+    redirect_to login_url
+  end
+
+  # Redirect to home if unathorized
+  def authorized?
+    redirect_to(root_url) unless system_user? || teaching_user?
+  end
 end
