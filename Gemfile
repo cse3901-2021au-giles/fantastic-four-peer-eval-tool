@@ -17,10 +17,11 @@ gem 'sass-rails',                 '6.0.0'
 gem 'turbolinks',                 '5.2.1'
 gem 'bootsnap',                   '1.7.2', require: false
 gem 'pg',         '1.2.3'
+gem 'webpacker',                  '5.4.0'
+
 
 group :development, :test do
   gem 'byebug',  '11.1.3', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'webpacker',                  '5.4.0'
   gem 'will_paginate',              '3.3.0'
   gem 'listen',             '3.4.1'
   gem 'rack-mini-profiler', '2.3.1'
